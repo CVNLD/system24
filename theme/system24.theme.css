@@ -1,17 +1,17 @@
 /**
- * @name system24
- * @description a tui-style discord theme.
- * @author refact0r
- * @version 2.0.0
+ * @name system24 red
+ * @description a tui-style discord theme. red accent, round avatars. fork of refact0r/system24.
+ * @author refact0r, CVNLD
+ * @version 2.1.0
  * @invite nz87hXyvcy
- * @website https://github.com/refact0r/system24
- * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @website https://github.com/CVNLD/system24
+ * @source https://github.com/CVNLD/system24/blob/main/theme/system24.theme.css
  * @authorId 508863359777505290
  * @authorLink https://www.refact0r.dev
 */
 
 /* import theme modules */
-@import url('https://refact0r.github.io/system24/build/system24.css');
+@import url('https://cdn.jsdelivr.net/gh/CVNLD/system24@main/build/system24.css');
 
 body {
     /* font, change to '' for default discord font */
@@ -50,7 +50,7 @@ body {
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
+    --dms-background-color: linear-gradient(70deg, var(--red-2), var(--purple-2), var(--blue-2)); /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -69,6 +69,7 @@ body {
 
     /* unrounding options */
     --unrounding: on; /* off: default, on: remove rounded corners from panels */
+    --square-avatars: off; /* off: round avatars (default), on: square avatars to match the TUI look. only applies when unrounding is on */
 
     /* styling options */
     --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
@@ -104,11 +105,11 @@ body {
     --message-hover: var(--hover); /* messages when hovered */
 
     /* accent colors */
-    --accent-1: var(--purple-1); /* links and other accent text */
-    --accent-2: var(--purple-2); /* small accent elements */
-    --accent-3: var(--purple-3); /* accent buttons */
-    --accent-4: var(--purple-4); /* accent buttons when hovered */
-    --accent-5: var(--purple-5); /* accent buttons when clicked */
+    --accent-1: var(--red-1); /* links and other accent text */
+    --accent-2: var(--red-2); /* small accent elements */
+    --accent-3: var(--red-3); /* accent buttons */
+    --accent-4: var(--red-4); /* accent buttons when hovered */
+    --accent-5: var(--red-5); /* accent buttons when clicked */
     --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
     --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
     --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
@@ -129,11 +130,11 @@ body {
     --button-border: hsl(220, 0%, 100%, 0.1); /* neutral border color of buttons */
 
     /* base colors */
-    --red-1: oklch(75% 0.13 0);
-    --red-2: oklch(70% 0.13 0);
-    --red-3: oklch(65% 0.13 0);
-    --red-4: oklch(60% 0.13 0);
-    --red-5: oklch(55% 0.13 0);
+    --red-1: oklch(75% 0.14 20);
+    --red-2: oklch(70% 0.14 20);
+    --red-3: oklch(65% 0.14 20);
+    --red-4: oklch(60% 0.14 20);
+    --red-5: oklch(55% 0.14 20);
 
     --green-1: oklch(75% 0.12 170);
     --green-2: oklch(70% 0.12 170);

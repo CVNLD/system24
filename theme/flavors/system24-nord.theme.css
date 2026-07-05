@@ -11,7 +11,7 @@
 */
 
 /* import theme modules */
-@import url('https://refact0r.github.io/system24/build/system24.css');
+@import url('https://cdn.jsdelivr.net/gh/CVNLD/system24@main/build/system24.css');
 
 body {
     /* font, change to '' for default discord font */
@@ -69,6 +69,7 @@ body {
 
     /* unrounding options */
     --unrounding: on; /* off: default, on: remove rounded corners from panels */
+    --square-avatars: off; /* off: round avatars (default), on: square avatars to match the TUI look. only applies when unrounding is on */
 
     /* styling options */
     --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */

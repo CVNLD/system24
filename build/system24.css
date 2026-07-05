@@ -48,7 +48,7 @@ body {
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
+    --dms-background-color: linear-gradient(70deg, var(--red-2), var(--purple-2), var(--blue-2)); /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -67,6 +67,7 @@ body {
 
     /* unrounding options */
     --unrounding: on; /* off: default, on: remove rounded corners from panels */
+    --square-avatars: off; /* off: round avatars (default), on: square avatars to match the TUI look. only applies when unrounding is on */
 
     /* styling options */
     --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
@@ -102,11 +103,11 @@ body {
     --message-hover: var(--hover); /* messages when hovered */
 
     /* accent colors */
-    --accent-1: var(--purple-1); /* links and other accent text */
-    --accent-2: var(--purple-2); /* small accent elements */
-    --accent-3: var(--purple-3); /* accent buttons */
-    --accent-4: var(--purple-4); /* accent buttons when hovered */
-    --accent-5: var(--purple-5); /* accent buttons when clicked */
+    --accent-1: var(--red-1); /* links and other accent text */
+    --accent-2: var(--red-2); /* small accent elements */
+    --accent-3: var(--red-3); /* accent buttons */
+    --accent-4: var(--red-4); /* accent buttons when hovered */
+    --accent-5: var(--red-5); /* accent buttons when clicked */
     --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
     --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
     --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
@@ -127,11 +128,11 @@ body {
     --button-border: hsl(220, 0%, 100%, 0.1); /* neutral border color of buttons */
 
     /* base colors */
-    --red-1: oklch(75% 0.13 0);
-    --red-2: oklch(70% 0.13 0);
-    --red-3: oklch(65% 0.13 0);
-    --red-4: oklch(60% 0.13 0);
-    --red-5: oklch(55% 0.13 0);
+    --red-1: oklch(75% 0.14 20);
+    --red-2: oklch(70% 0.14 20);
+    --red-3: oklch(65% 0.14 20);
+    --red-4: oklch(60% 0.14 20);
+    --red-5: oklch(55% 0.14 20);
 
     --green-1: oklch(75% 0.12 170);
     --green-2: oklch(70% 0.12 170);
@@ -495,6 +496,12 @@ body {
     initial-value: on;
 }
 
+@property --square-avatars {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: off;
+}
+
 @container body style(--unrounding: on) {
     *,
     *::before,
@@ -510,7 +517,89 @@ body {
         --radius-round: 0px !important;
     }
 
-    .svg_cc5dd2 > mask,
+    .svg_cc5dd2 > mask {
+        display: none;
+    }
+
+    .lowerBadge_cc5dd2 {
+        border: 2px solid var(--background-base-lower);
+        bottom: -4px;
+        right: -4px;
+    }
+    .upperBadge_cc5dd2 {
+        border: 2px solid var(--background-base-lower);
+        top: -4px;
+        right: -4px;
+    }
+    .folderGroup__48112.isExpanded__48112 > .stack_dbd263 {
+        overflow: visible !important;
+    }
+
+    .slider__3f21e > rect[rx='10'] {
+        rx: 0 !important;
+    }
+
+    /* vencord membercount plugin */
+    .vc-membercount-online-count circle,
+    .vc-membercount-total-count circle {
+        display: none !important;
+    }
+    .vc-membercount-online-count {
+        background-color: var(--online) !important;
+        height: 12px !important;
+        width: 12px !important;
+    }
+    .vc-membercount-total-count {
+        border: 3px solid var(--offline) !important;
+        box-sizing: border-box !important;
+        height: 12px !important;
+        width: 12px !important;
+    }
+
+    /* equicord switches */
+    .vc-switch-indicator .vc-switch-thumb rect {
+        rx: var(--radius-lg) !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 0 !important;
+    }
+
+    :is(.vc-switch-slider, .thumb_a28278) > rect {
+        rx: 0px !important;
+    }
+
+    /* sticker panel */
+    .assetWrapper__31fc2.assetWrapperMasked__31fc2,
+    .inspectedIndicator_c6367b {
+        webkit-mask: none;
+        mask: none;
+    }
+
+    /* context menu radio buttons */
+    .radioIndicator__64e61 {
+        background-color: var(--checkbox-background-default);
+        background-image: linear-gradient(var(--white) 0 0);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 0 0;
+        border: 1px solid var(--checkbox-border-default);
+        box-sizing: border-box;
+        transition: background-size 0.25s cubic-bezier(0.35, 1.6, 0.45, 1);
+    }
+    .radioIndicator__64e61 > circle {
+        display: none;
+    }
+    .standaloneRadioIndicator__64e61[data-selected='true'] .radioIndicator__64e61,
+    .radioGroupOption__64e61[data-selected='true'] .radioIndicator__64e61 {
+        background-color: var(--checkbox-background-selected-default);
+        background-size: 8px 8px;
+        border-color: var(--checkbox-border-selected-default);
+    }
+}
+
+/* square avatars + rebuilt square status indicators. only applies when --unrounding is also on. */
+@container body style(--unrounding: on) and style(--square-avatars: on) {
     .svg__44b0c > rect,
     .svg__44b0c > circle,
     .svg__44b0c > g,
@@ -561,85 +650,19 @@ body {
         background: var(--streaming-2);
     }
 
-    .lowerBadge_cc5dd2 {
-        border: 2px solid var(--background-base-lower);
-        bottom: -4px;
-        right: -4px;
-    }
-    .upperBadge_cc5dd2 {
-        border: 2px solid var(--background-base-lower);
-        top: -4px;
-        right: -4px;
-    }
-    .folderGroup__48112.isExpanded__48112 > .stack_dbd263 {
-        overflow: visible !important;
-    }
-
-    .slider__3f21e > rect[rx='10'] {
-        rx: 0 !important;
-    }
-
-    /* vencord membercount plugin */
-    .vc-membercount-online-count circle,
-    .vc-membercount-total-count circle {
-        display: none !important;
-    }
-    .vc-membercount-online-count {
-        background-color: var(--online) !important;
-        height: 12px !important;
-        width: 12px !important;
-    }
-    .vc-membercount-total-count {
-        border: 3px solid var(--offline) !important;
-        box-sizing: border-box !important;
-        height: 12px !important;
-        width: 12px !important;
-    }
-
     /* prevent the status circle background mask from blocking avatar decorations in profile popouts */
     .wrapper__44b0c foreignObject {
         mask: none;
     }
+}
 
-    /* equicord switches */
-    .vc-switch-indicator .vc-switch-thumb rect {
-        rx: var(--radius-lg) !important;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        border-radius: 0 !important;
-    }
-
-    :is(.vc-switch-slider, .thumb_a28278) > rect {
-        rx: 0px !important;
-    }
-
-    /* sticker panel */
-    .assetWrapper__31fc2.assetWrapperMasked__31fc2,
-    .inspectedIndicator_c6367b {
-        webkit-mask: none;
-        mask: none;
-    }
-
-    /* context menu radio buttons */
-    .radioIndicator__64e61 {
-        background-color: var(--checkbox-background-default);
-        background-image: linear-gradient(var(--white) 0 0);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 0 0;
-        border: 1px solid var(--checkbox-border-default);
-        box-sizing: border-box;
-        transition: background-size 0.25s cubic-bezier(0.35, 1.6, 0.45, 1);
-    }
-    .radioIndicator__64e61 > circle {
-        display: none;
-    }
-    .standaloneRadioIndicator__64e61[data-selected='true'] .radioIndicator__64e61,
-    .radioGroupOption__64e61[data-selected='true'] .radioIndicator__64e61 {
-        background-color: var(--checkbox-background-selected-default);
-        background-size: 8px 8px;
-        border-color: var(--checkbox-border-selected-default);
+/* round avatars (default): restore circular avatars that the global unrounding above squares.
+   masked svg avatars keep their native circular masks; plain img avatars and html status dots
+   get their radius back. */
+@container body style(--unrounding: on) and style(--square-avatars: off) {
+    img[class*='avatar' i]:not([class*='decoration' i]),
+    .status_a423bd {
+        border-radius: 50% !important;
     }
 }
 
