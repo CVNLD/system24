@@ -80,7 +80,7 @@
     /* sticker panel */
     .assetWrapper__31fc2.assetWrapperMasked__31fc2,
     .inspectedIndicator_c6367b {
-        webkit-mask: none;
+        -webkit-mask: none;
         mask: none;
     }
 
@@ -143,16 +143,16 @@
     }
     .wrapper__44b0c:has(rect[fill='#45a366'])::after,
     .container__1ce5d:has(.status_a423bd[style='background-color: rgb(69, 163, 102);'])::after {
-        background: var(--online-2) !important;
+        background: var(--online-2);
     }
     .wrapper__44b0c:has(rect[fill='#da3e44'])::after {
-        background: var(--dnd-2) !important;
+        background: var(--dnd-2);
     }
     .wrapper__44b0c:has(rect[fill='#ffc04e'])::after {
-        background: var(--idle-2) !important;
+        background: var(--idle-2);
     }
     .wrapper__44b0c:has(rect[fill='#84858d'])::after {
-        background: var(--offline-2) !important;
+        background: var(--offline-2);
     }
     .wrapper__44b0c:has(rect[fill='#9147ff'])::after {
         background: var(--streaming-2);
@@ -165,10 +165,15 @@
 }
 
 /* round avatars (default): restore circular avatars that the global unrounding above squares.
-   masked svg avatars keep their native circular masks; plain img avatars and html status dots
-   get their radius back. */
+   masked svg avatars keep their native circular masks. plain img/div avatars get their radius
+   back via class patterns, plus cdn path segments (/avatars/, /channel-icons/) which are api
+   contract and survive class-hash churn. guild icons (/icons/) intentionally stay square. */
 @container body style(--unrounding: on) and style(--square-avatars: off) {
     img[class*='avatar' i]:not([class*='decoration' i]),
+    [class*='userAvatar' i],
+    [class*='avatarUploaderInner' i],
+    img[src*='/avatars/'],
+    img[src*='/channel-icons/'],
     .status_a423bd {
         border-radius: 50% !important;
     }

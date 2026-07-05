@@ -7,4 +7,82 @@
         --offline-2: var(--offline);
         --streaming-2: var(--streaming);
     }
+
+    /* brand tokens midnight misses: keep every blurple surface on the accent scale.
+       same selector list midnight uses for its token remaps; later source order wins. */
+    body,
+    .theme-dark:not(.custom-user-profile-theme),
+    .theme-light:not(.custom-user-profile-theme) {
+        /* core brand background: upload progress, NEW pills, brand tooltips.
+           midnight itself references --bg-brand (inbox hover) but never defines it */
+        --bg-brand: var(--accent-3);
+
+        /* filled brand buttons (confirm / join / add friend / vote).
+           near-white text: dark-on-crimson caps at 4.37:1 and fails AA */
+        --button-filled-brand-background: var(--accent-3);
+        --button-filled-brand-background-hover: var(--accent-4);
+        --button-filled-brand-background-active: var(--accent-5);
+        --button-filled-brand-border: var(--button-border);
+        --button-filled-brand-border-hover: var(--button-border);
+        --button-filled-brand-border-active: var(--button-border);
+        --button-filled-brand-text: oklch(98% 0.005 25);
+
+        /* outline brand buttons; also replaces midnight's blue/magenta debug values */
+        --button-outline-brand-text: var(--accent-1);
+        --button-outline-brand-text-hover: oklch(98% 0.005 25);
+        --button-outline-brand-text-active: oklch(98% 0.005 25);
+        --button-outline-brand-border: var(--accent-2);
+        --button-outline-brand-border-hover: var(--accent-3);
+        --button-outline-brand-border-active: var(--accent-4);
+        --button-outline-brand-background: transparent;
+        --button-outline-brand-background-hover: var(--accent-3);
+        --button-outline-brand-background-active: var(--accent-4);
+
+        /* legacy brand ramp: midnight remaps 260/360/500 only, so hover (560) and
+           pressed (600) states flash blurple without these */
+        --brand-300: var(--accent-1);
+        --brand-330: var(--accent-1);
+        --brand-345: var(--accent-1);
+        --brand-400: var(--accent-2);
+        --brand-430: var(--accent-2);
+        --brand-460: var(--accent-3);
+        --brand-530: var(--accent-4);
+        --brand-560: var(--accent-4);
+        --brand-600: var(--accent-5);
+        --brand-630: var(--accent-5);
+        --brand-660: var(--accent-5);
+        --brand-700: var(--accent-5);
+        --brand-730: var(--accent-5);
+        --brand-760: var(--accent-5);
+
+        /* bare hsl triplets for hsl(var(--x-hsl) / a) composites; space-separated like
+           discord's own definitions so slash alpha composes validly. must stay literal. */
+        --brand-500-hsl: 348 83% 47%;
+        --brand-560-hsl: 348 83% 40%;
+        --brand-600-hsl: 348 83% 34%;
+
+        /* selected-state control accents; midnight ships a lime debug value here */
+        --control-brand-foreground-new: var(--accent-2);
+
+        /* help/info callout boxes */
+        --info-help-background: color-mix(in oklch, var(--accent-2), transparent 90%);
+        --info-help-foreground: var(--accent-1);
+        --info-help-text: var(--text-2);
+
+        /* boost/premium accents where tokenized (harmless no-ops if dropped by discord) */
+        --guild-boosting-blue: var(--accent-1);
+        --guild-boosting-blue-for-gradients: var(--accent-1);
+        --guild-boosting-pink: var(--accent-2);
+        --guild-boosting-purple: var(--accent-3);
+        --premium-perk-blue: var(--accent-1);
+        --premium-perk-pink: var(--accent-2);
+        --premium-perk-purple: var(--accent-3);
+    }
+
+    /* default-color expanded server folders paint blurple via an inline rgba();
+       token remaps can't reach inline styles, so match and beat it directly.
+       user-customized folder colors are left alone. */
+    [class*='expandedFolderBackground'][style*='rgba(88, 101, 242'] {
+        background-color: color-mix(in oklab, var(--accent-3) 40%, transparent) !important;
+    }
 }

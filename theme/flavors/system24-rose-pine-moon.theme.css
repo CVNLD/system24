@@ -67,6 +67,10 @@ body {
     /* other options */
     --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
 
+    /* chatbar options */
+    --custom-chatbar: separated; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+    --chatbar-height: 56px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+
     /* unrounding options */
     --unrounding: on; /* off: default, on: remove rounded corners from panels */
     --square-avatars: off; /* off: round avatars (default), on: square avatars to match the TUI look. only applies when unrounding is on */

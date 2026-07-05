@@ -22,12 +22,12 @@ body {
     --gap: 12px; /* spacing between panels */
     --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
     --border-thickness: 2px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
-    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
+    --border-hover-transition: 0.1s ease; /* transition for borders when hovered */
 
     /* animation/transition options */
     --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
-    --list-item-transition: 0.2s ease; /* transition for list items */
-    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+    --list-item-transition: 0.1s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.2s ease; /* transition for the dms icon */
 
     /* top bar options */
     --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
@@ -48,7 +48,7 @@ body {
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: linear-gradient(70deg, var(--red-2), var(--purple-2), var(--blue-2)); /* fixed color/gradient (css background property) */
+    --dms-background-color: linear-gradient(70deg, var(--red-2), var(--red-4)); /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -64,6 +64,10 @@ body {
 
     /* other options */
     --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
+
+    /* chatbar options */
+    --custom-chatbar: separated; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+    --chatbar-height: 56px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
 
     /* unrounding options */
     --unrounding: on; /* off: default, on: remove rounded corners from panels */
@@ -83,25 +87,25 @@ body {
 
 /* color options */
 :root {
-    --colors: on; /* off: discord default colors, on: midnight custom colors */
+    --colors: on; /* off: discord default colors, on: theme custom colors */
 
-    /* text colors */
+    /* text colors (warm-tinted neutrals: sub-JND hue-25 bias graded by lightness) */
     --text-0: var(--bg-4); /* text on colored elements */
-    --text-1: oklch(95% 0 0); /* other normally white text */
-    --text-2: oklch(85% 0 0); /* headings and important text */
-    --text-3: oklch(75% 0 0); /* normal text */
-    --text-4: oklch(60% 0 0); /* icon buttons and channels */
-    --text-5: oklch(40% 0 0); /* muted channels/chats and timestamps */
+    --text-1: oklch(95% 0.002 25); /* other normally white text */
+    --text-2: oklch(85% 0.003 25); /* headings and important text */
+    --text-3: oklch(75% 0.004 25); /* normal text */
+    --text-4: oklch(60% 0.006 25); /* icon buttons and channels */
+    --text-5: oklch(46% 0.008 25); /* muted channels/chats and timestamps */
 
     /* background and dark colors */
-    --bg-1: oklch(31% 0 0); /* dark buttons when clicked */
-    --bg-2: oklch(27% 0 0); /* dark buttons */
-    --bg-3: oklch(23% 0 0); /* spacing, secondary elements */
-    --bg-4: oklch(19% 0 0); /* main background color */
-    --hover: oklch(54% 0 0 / 0.1); /* channels and buttons when hovered */
-    --active: oklch(54% 0 0 / 0.2); /* channels and buttons when clicked or selected */
-    --active-2: oklch(54% 0 0 / 0.3); /* extra state for transparent buttons */
-    --message-hover: var(--hover); /* messages when hovered */
+    --bg-1: oklch(31% 0.006 25); /* dark buttons when clicked */
+    --bg-2: oklch(27% 0.006 25); /* dark buttons */
+    --bg-3: oklch(23% 0.006 25); /* spacing, secondary elements */
+    --bg-4: oklch(19% 0.006 25); /* main background color */
+    --hover: oklch(54% 0.04 25 / 0.1); /* channels and buttons when hovered */
+    --active: oklch(54% 0.04 25 / 0.2); /* channels and buttons when clicked or selected */
+    --active-2: oklch(54% 0.04 25 / 0.3); /* extra state for transparent buttons */
+    --message-hover: oklch(54% 0.04 25 / 0.16); /* messages when hovered */
 
     /* accent colors */
     --accent-1: var(--red-1); /* links and other accent text */
@@ -110,65 +114,104 @@ body {
     --accent-4: var(--red-4); /* accent buttons when hovered */
     --accent-5: var(--red-5); /* accent buttons when clicked */
     --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
-    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
-    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
-    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
-    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
+    --mention: color-mix(in oklch, var(--accent-2), transparent 88%); /* background of messages that mention you */
+    --mention-hover: color-mix(in oklch, var(--accent-2), transparent 82%); /* background of messages that mention you when hovered */
+    --reply: color-mix(in oklch, var(--text-3), transparent 90%); /* background of messages that reply to you */
+    --reply-hover: color-mix(in oklch, var(--text-3), transparent 85%); /* background of messages that reply to you when hovered */
 
     /* status indicator colors */
     --online: var(--green-2); /* change to #40a258 for default */
     --dnd: var(--red-2); /* change to #d83a41 for default */
     --idle: var(--yellow-2); /* change to #cc954c for default */
-    --streaming: var(--purple-2); /* change to ##9147ff for default */
+    --streaming: var(--purple-2); /* change to #9147ff for default */
     --offline: var(--text-4); /* change to #82838b for default offline color */
 
     /* border colors */
     --border-light: var(--hover); /* general light border color */
     --border: var(--active); /* general normal border color */
     --border-hover: var(--accent-2); /* border color of panels when hovered */
-    --button-border: hsl(220, 0%, 100%, 0.1); /* neutral border color of buttons */
+    --button-border: oklch(95% 0.01 25 / 0.1); /* neutral border color of buttons */
 
     /* base colors */
-    --red-1: oklch(70% 0.19 20);
+    /* crimson accent scale (red-3 ~ #dc143c); red-1 tuned for weight-300 link text */
+    --red-1: oklch(73% 0.16 21);
     --red-2: oklch(64% 0.21 20);
     --red-3: oklch(58% 0.22 20);
     --red-4: oklch(53% 0.21 20);
     --red-5: oklch(48% 0.19 20);
 
-    --green-1: oklch(75% 0.12 170);
-    --green-2: oklch(70% 0.12 170);
-    --green-3: oklch(65% 0.12 170);
-    --green-4: oklch(60% 0.12 170);
-    --green-5: oklch(55% 0.12 160);
+    /* non-accent hues muted to chroma 0.09: semantics kept, crimson stays the phosphor */
+    --green-1: oklch(75% 0.09 170);
+    --green-2: oklch(70% 0.09 170);
+    --green-3: oklch(65% 0.09 170);
+    --green-4: oklch(60% 0.09 170);
+    --green-5: oklch(55% 0.09 160);
 
-    --blue-1: oklch(75% 0.11 215);
-    --blue-2: oklch(70% 0.11 215);
-    --blue-3: oklch(65% 0.11 215);
-    --blue-4: oklch(60% 0.11 215);
-    --blue-5: oklch(55% 0.11 215);
+    --blue-1: oklch(75% 0.09 215);
+    --blue-2: oklch(70% 0.09 215);
+    --blue-3: oklch(65% 0.09 215);
+    --blue-4: oklch(60% 0.09 215);
+    --blue-5: oklch(55% 0.09 215);
 
-    --yellow-1: oklch(80% 0.12 90);
-    --yellow-2: oklch(75% 0.12 90);
-    --yellow-3: oklch(70% 0.12 90);
-    --yellow-4: oklch(65% 0.12 90);
-    --yellow-5: oklch(60% 0.12 90);
+    --yellow-1: oklch(80% 0.09 90);
+    --yellow-2: oklch(75% 0.09 90);
+    --yellow-3: oklch(70% 0.09 90);
+    --yellow-4: oklch(65% 0.09 90);
+    --yellow-5: oklch(60% 0.09 90);
 
-    --purple-1: oklch(75% 0.12 310);
-    --purple-2: oklch(70% 0.12 310);
-    --purple-3: oklch(65% 0.12 310);
-    --purple-4: oklch(60% 0.12 310);
-    --purple-5: oklch(55% 0.12 310);
-}
-
-body {
-    --custom-chatbar: separated !important; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
-    --chatbar-height: 56px !important; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+    --purple-1: oklch(75% 0.09 310);
+    --purple-2: oklch(70% 0.09 310);
+    --purple-3: oklch(65% 0.09 310);
+    --purple-4: oklch(60% 0.09 310);
+    --purple-5: oklch(55% 0.09 310);
 }
 
 /* accent scrollbar thumb when grabbed */
 #app-mount ::-webkit-scrollbar-thumb:hover,
 #app-mount ::-webkit-scrollbar-thumb:active {
     background-color: var(--accent-3);
+}
+
+/* crimson caret in every input */
+#app-mount input,
+#app-mount textarea,
+#app-mount [contenteditable='true'] {
+    caret-color: var(--accent-2);
+}
+
+/* full-coverage reverse-video selection (midnight only scopes ::selection to div/span/code/a) */
+#app-mount ::selection {
+    background: var(--accent-3);
+    color: oklch(98% 0.005 25);
+}
+
+/* persistent underline on chat links, dimmed at rest; discord's hover brings it to full */
+#app-mount [class*='markup_'] a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in oklab, currentColor 55%, transparent);
+}
+
+/* unread channels: crimson dot (square under unrounding) + brighter name */
+.unread__2ea32 {
+    background-color: var(--accent-2);
+}
+.modeUnread__2ea32 .name__2ea32,
+.modeUnreadImportant__2ea32 .name__2ea32 {
+    color: var(--text-2);
+    font-weight: 500;
+}
+
+/* message timestamps lift to readable when the row is hovered (id survives hash churn) */
+li:hover time[id^='message-timestamp'] {
+    color: var(--text-3);
+}
+
+/* hairline between message author groups, like a tmux pane separator */
+.groupStart__5126c {
+    border-top: 1px solid var(--border-light);
+    padding-top: 6px;
 }
 
 .bg__960e4 {
@@ -237,7 +280,7 @@ body {
             background-position: 100% 50%;
         }
         50.0001% {
-            background-position: -100%, 50%;
+            background-position: -100% 50%;
         }
         100% {
             background-position: 0% 50%;
@@ -275,15 +318,87 @@ body {
         --offline-2: var(--offline);
         --streaming-2: var(--streaming);
     }
+
+    /* brand tokens midnight misses: keep every blurple surface on the accent scale.
+       same selector list midnight uses for its token remaps; later source order wins. */
+    body,
+    .theme-dark:not(.custom-user-profile-theme),
+    .theme-light:not(.custom-user-profile-theme) {
+        /* core brand background: upload progress, NEW pills, brand tooltips.
+           midnight itself references --bg-brand (inbox hover) but never defines it */
+        --bg-brand: var(--accent-3);
+
+        /* filled brand buttons (confirm / join / add friend / vote).
+           near-white text: dark-on-crimson caps at 4.37:1 and fails AA */
+        --button-filled-brand-background: var(--accent-3);
+        --button-filled-brand-background-hover: var(--accent-4);
+        --button-filled-brand-background-active: var(--accent-5);
+        --button-filled-brand-border: var(--button-border);
+        --button-filled-brand-border-hover: var(--button-border);
+        --button-filled-brand-border-active: var(--button-border);
+        --button-filled-brand-text: oklch(98% 0.005 25);
+
+        /* outline brand buttons; also replaces midnight's blue/magenta debug values */
+        --button-outline-brand-text: var(--accent-1);
+        --button-outline-brand-text-hover: oklch(98% 0.005 25);
+        --button-outline-brand-text-active: oklch(98% 0.005 25);
+        --button-outline-brand-border: var(--accent-2);
+        --button-outline-brand-border-hover: var(--accent-3);
+        --button-outline-brand-border-active: var(--accent-4);
+        --button-outline-brand-background: transparent;
+        --button-outline-brand-background-hover: var(--accent-3);
+        --button-outline-brand-background-active: var(--accent-4);
+
+        /* legacy brand ramp: midnight remaps 260/360/500 only, so hover (560) and
+           pressed (600) states flash blurple without these */
+        --brand-300: var(--accent-1);
+        --brand-330: var(--accent-1);
+        --brand-345: var(--accent-1);
+        --brand-400: var(--accent-2);
+        --brand-430: var(--accent-2);
+        --brand-460: var(--accent-3);
+        --brand-530: var(--accent-4);
+        --brand-560: var(--accent-4);
+        --brand-600: var(--accent-5);
+        --brand-630: var(--accent-5);
+        --brand-660: var(--accent-5);
+        --brand-700: var(--accent-5);
+        --brand-730: var(--accent-5);
+        --brand-760: var(--accent-5);
+
+        /* bare hsl triplets for hsl(var(--x-hsl) / a) composites; space-separated like
+           discord's own definitions so slash alpha composes validly. must stay literal. */
+        --brand-500-hsl: 348 83% 47%;
+        --brand-560-hsl: 348 83% 40%;
+        --brand-600-hsl: 348 83% 34%;
+
+        /* selected-state control accents; midnight ships a lime debug value here */
+        --control-brand-foreground-new: var(--accent-2);
+
+        /* help/info callout boxes */
+        --info-help-background: color-mix(in oklch, var(--accent-2), transparent 90%);
+        --info-help-foreground: var(--accent-1);
+        --info-help-text: var(--text-2);
+
+        /* boost/premium accents where tokenized (harmless no-ops if dropped by discord) */
+        --guild-boosting-blue: var(--accent-1);
+        --guild-boosting-blue-for-gradients: var(--accent-1);
+        --guild-boosting-pink: var(--accent-2);
+        --guild-boosting-purple: var(--accent-3);
+        --premium-perk-blue: var(--accent-1);
+        --premium-perk-pink: var(--accent-2);
+        --premium-perk-purple: var(--accent-3);
+    }
+
+    /* default-color expanded server folders paint blurple via an inline rgba();
+       token remaps can't reach inline styles, so match and beat it directly.
+       user-customized folder colors are left alone. */
+    [class*='expandedFolderBackground'][style*='rgba(88, 101, 242'] {
+        background-color: color-mix(in oklab, var(--accent-3) 40%, transparent) !important;
+    }
 }
 
 /* panel-labels.css */
-body {
-    --label-color: var(--text-muted);
-    --label-hover-color: var(--accent-2);
-    --label-font-weight: 500;
-}
-
 @property --panel-labels {
     syntax: 'off | on';
     inherits: false;
@@ -345,7 +460,7 @@ body {
     .content_f75fb0 > .membersWrap_c8ffbb::after {
         content: 'members';
     }
-    .container__133bf > .container__9293f:after {
+    .container__133bf > .container__9293f::after {
         content: 'friends';
     }
     .peopleColumn__133bf::after {
@@ -579,7 +694,7 @@ body {
     /* sticker panel */
     .assetWrapper__31fc2.assetWrapperMasked__31fc2,
     .inspectedIndicator_c6367b {
-        webkit-mask: none;
+        -webkit-mask: none;
         mask: none;
     }
 
@@ -642,16 +757,16 @@ body {
     }
     .wrapper__44b0c:has(rect[fill='#45a366'])::after,
     .container__1ce5d:has(.status_a423bd[style='background-color: rgb(69, 163, 102);'])::after {
-        background: var(--online-2) !important;
+        background: var(--online-2);
     }
     .wrapper__44b0c:has(rect[fill='#da3e44'])::after {
-        background: var(--dnd-2) !important;
+        background: var(--dnd-2);
     }
     .wrapper__44b0c:has(rect[fill='#ffc04e'])::after {
-        background: var(--idle-2) !important;
+        background: var(--idle-2);
     }
     .wrapper__44b0c:has(rect[fill='#84858d'])::after {
-        background: var(--offline-2) !important;
+        background: var(--offline-2);
     }
     .wrapper__44b0c:has(rect[fill='#9147ff'])::after {
         background: var(--streaming-2);
@@ -664,10 +779,15 @@ body {
 }
 
 /* round avatars (default): restore circular avatars that the global unrounding above squares.
-   masked svg avatars keep their native circular masks; plain img avatars and html status dots
-   get their radius back. */
+   masked svg avatars keep their native circular masks. plain img/div avatars get their radius
+   back via class patterns, plus cdn path segments (/avatars/, /channel-icons/) which are api
+   contract and survive class-hash churn. guild icons (/icons/) intentionally stay square. */
 @container body style(--unrounding: on) and style(--square-avatars: off) {
     img[class*='avatar' i]:not([class*='decoration' i]),
+    [class*='userAvatar' i],
+    [class*='avatarUploaderInner' i],
+    img[src*='/avatars/'],
+    img[src*='/channel-icons/'],
     .status_a423bd {
         border-radius: 50% !important;
     }
